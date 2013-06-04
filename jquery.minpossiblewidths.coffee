@@ -1,14 +1,30 @@
-jQuery.fn.minPossibleWidths = (maxRowCount) ->
-  minWidths = new Array()
+jQuery.fn.minPossibleWidths = (options) ->
+  settings = jQuery.extend({
+    maxRowCount: 20,
+    minPossibleWidth: 0,
+    minWidths: {}
+  }, options)
+
+  minWidths = []
   jQuery(this).find('tr').each( (rowCount) ->
+    jQuery(this).find('th').each( (index) ->
+      if(jQuery(this).attr('id'))
+        if(settings.minWidths.hasOwnProperty(jQuery(this).attr('id')))
+          minWidths[index] = settings.minWidths[jQuery(this).attr('id')]
+    )
+
     jQuery(this).find('td').each( (index) ->
-      width = $(this).text().width(jQuery(this).css('font'))
-      if(!minWidths[index])
-        minWidths[index] = width
-      else if (minWidths[index] < width)
+      width = jQuery(this).text().width(jQuery(this).css('font'))
+
+      if(!minWidths[index]) # the min width for this column is not yet set
+        if(width>settings.minPossibleWidth)
+          minWidths[index] = width
+        else
+          minWidths[index] = settings.minPossibleWidth
+      else if (minWidths[index] < width) #min width was already set, lets see if ours is bigger
         minWidths[index] = width
     )
-    if(rowCount > maxRowCount)
+    if(rowCount > settings.maxRowCount)
       # we probably have iterated enough to get an idea of the right widths
       return false
   )
@@ -21,3 +37,4 @@ String.prototype.width = (font) ->
   f = font || '12px arial'
   o = $('#textWidthCalculator').text(this).css({'font': f})
   w = o.width()
+
