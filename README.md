@@ -12,12 +12,32 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 
 ### Options
 
-.minPossibleWidths takes in the max number of rows it should iterate through before assuming it has the smallest possible width for that column.
+    {
+        maxRowCount: int,
+        minPossibleWidth: int,
+        minWidths: {
+            some_th_id : int
+        }
+    }
+
+* maxRowCount - You can specify the max number of rows to iterate through before stopping measuring column widths
+* minPossibleWidth - A global minimum that the found minimum cannot be below.
+* minWidths - Specify a minimum that any column (via <th> id) cannot be below.
 
 Any column with a th that has a class of autoWidth will not have the width set. However it will still be iterated over for width determination.
 
 ### Example
 
-Set the minimum possible widths:
+Set the max row count:
 
-    $('#projectsTable').minPossibleWidths(20)
+    $('#myCoolTable').minPossibleWidths({
+        maxRowCount : 20,
+    })
+
+Set a minimum width for a specific column that the found width cannot be less than:
+
+    $('#myCoolTable').minPossibleWidths({
+        minWidths : {
+            titleCol : 150
+        }
+    })
