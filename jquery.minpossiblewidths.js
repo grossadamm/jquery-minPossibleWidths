@@ -42,8 +42,12 @@
   };
 
   String.prototype.width = function(font) {
-    var f, o, w;
+    var f, o, textWidthCalculator, w;
 
+    if ($('#textWidthCalculator').length === 0) {
+      textWidthCalculator = '<div id="textWidthCalculator" style="position: absolute; float: left; white-space: nowrap; visibility: hidden;"></div>';
+      $('body').append(textWidthCalculator);
+    }
     f = font || '12px arial';
     o = $('#textWidthCalculator').text(this).css({
       'font': f

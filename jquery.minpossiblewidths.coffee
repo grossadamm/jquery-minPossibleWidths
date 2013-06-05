@@ -34,7 +34,11 @@ jQuery.fn.minPossibleWidths = (options) ->
   )
 
 String.prototype.width = (font) ->
+  if($('#textWidthCalculator').length==0)
+    textWidthCalculator = '<div id="textWidthCalculator" style="position: absolute; float: left; white-space: nowrap; visibility: hidden;"></div>'
+    $('body').append(textWidthCalculator)
   f = font || '12px arial'
   o = $('#textWidthCalculator').text(this).css({'font': f})
   w = o.width()
+
 
