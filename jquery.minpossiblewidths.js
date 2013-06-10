@@ -5,7 +5,8 @@
     settings = jQuery.extend({
       maxRowCount: 20,
       minPossibleWidth: 0,
-      minWidths: {}
+      minWidths: {},
+      incrementAllBy: 0
     }, options);
     minWidths = [];
     jQuery(this).find('tr').each(function(rowCount) {
@@ -22,12 +23,12 @@
         width = jQuery(this).text().width(jQuery(this).css('font'));
         if (!minWidths[index]) {
           if (width > settings.minPossibleWidth) {
-            return minWidths[index] = width;
+            return minWidths[index] = width + settings.incrementAllBy;
           } else {
             return minWidths[index] = settings.minPossibleWidth;
           }
         } else if (minWidths[index] < width) {
-          return minWidths[index] = width;
+          return minWidths[index] = width + settings.incrementAllBy;
         }
       });
       if (rowCount > settings.maxRowCount) {

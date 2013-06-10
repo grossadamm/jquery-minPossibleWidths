@@ -2,7 +2,8 @@ jQuery.fn.minPossibleWidths = (options) ->
   settings = jQuery.extend({
     maxRowCount: 20,
     minPossibleWidth: 0,
-    minWidths: {}
+    minWidths: {},
+    incrementAllBy: 0
   }, options)
 
   minWidths = []
@@ -18,11 +19,11 @@ jQuery.fn.minPossibleWidths = (options) ->
 
       if(!minWidths[index]) # the min width for this column is not yet set
         if(width>settings.minPossibleWidth)
-          minWidths[index] = width
+          minWidths[index] = width + settings.incrementAllBy
         else
           minWidths[index] = settings.minPossibleWidth
       else if (minWidths[index] < width) #min width was already set, lets see if ours is bigger
-        minWidths[index] = width
+        minWidths[index] = width + settings.incrementAllBy
     )
     if(rowCount > settings.maxRowCount)
       # we probably have iterated enough to get an idea of the right widths
@@ -40,5 +41,4 @@ String.prototype.width = (font) ->
   f = font || '12px arial'
   o = $('#textWidthCalculator').text(this).css({'font': f})
   w = o.width()
-
 

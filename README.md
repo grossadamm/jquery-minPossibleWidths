@@ -23,6 +23,7 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 * maxRowCount - You can specify the max number of rows to iterate through before stopping measuring column widths
 * minPossibleWidth - A global minimum that the found minimum cannot be below.
 * minWidths - Specify a minimum that any column (via <th> id) cannot be below.
+* incrementAllBy - Add this number to every calculated width. Very helpful if you have a negative dropshadow that might be making the calculation just a hair off. 
 
 Any column with a th that has a class of autoWidth will not have the width set. However it will still be iterated over for width determination.
 
