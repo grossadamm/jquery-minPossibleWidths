@@ -27,6 +27,8 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 
 Any column with a th that has a class of autoWidth will not have the width set. However it will still be iterated over for width determination.
 
+Additionally, any td that has a class of skipWidth or that has a colspan will be skipped when calculating the widths for that column.
+
 ### Example
 
 Set the max row count:

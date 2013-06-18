@@ -15,7 +15,11 @@ jQuery.fn.minPossibleWidths = (options) ->
     )
 
     jQuery(this).find('td').each( (index) ->
-      width = jQuery(this).text().width(jQuery(this).css('font'))
+      colspanExists = jQuery(this).attr('colspan');
+      if(jQuery(this).hasClass('skipWidth') || (typeof colspanExists != 'undefined' && colspanExists != false))
+        width = 0
+      else
+        width = jQuery(this).text().width(jQuery(this).css('font'))
 
       if(!minWidths[index]) # the min width for this column is not yet set
         if(width>settings.minPossibleWidth)

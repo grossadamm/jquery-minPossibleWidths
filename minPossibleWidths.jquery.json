@@ -1,6 +1,6 @@
 {
   "name": "minPossibleWidths",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "title":  "jQuery Minimum Possible Widths",
   "description": "A very simple jQuery plugin that will help you set the minimum possible width for each column in a table that does not cause the text to line break.",
   "author": {

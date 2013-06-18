@@ -18,9 +18,16 @@
         }
       });
       jQuery(this).find('td').each(function(index) {
-        var width;
+        var colspanExists, width;
 
-        width = jQuery(this).text().width(jQuery(this).css('font'));
+        colspanExists = jQuery(this).attr('colspan');
+        console.log(jQuery(this).attr('class'));
+        if (jQuery(this).hasClass('skipWidth') || (typeof colspanExists !== 'undefined' && colspanExists !== false)) {
+          console.log('skipping');
+          width = 0;
+        } else {
+          width = jQuery(this).text().width(jQuery(this).css('font'));
+        }
         if (!minWidths[index]) {
           if (width > settings.minPossibleWidth) {
             return minWidths[index] = width + settings.incrementAllBy;
