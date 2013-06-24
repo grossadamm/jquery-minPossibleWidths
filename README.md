@@ -15,6 +15,7 @@ Include script *after* the jQuery library (unless you are packaging scripts some
     {
         maxRowCount: int,
         minPossibleWidth: int,
+        incrementAllBy: int,
         minWidths: {
             some_th_id : int
         }
