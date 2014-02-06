@@ -8,6 +8,11 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 
     <script src="/path/to/jquery.minpossiblewidths.js"></script>
 
+## Possible Improvements
+
+* Don't prototype string.width since that reaches beyond the scope of the plugin.
+* Don't loop through ```jQuery(this).find(x).each``` so much and refactor for cleanliness
+
 ## Usage
 
 ### Options
